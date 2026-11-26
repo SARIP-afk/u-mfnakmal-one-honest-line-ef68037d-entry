@@ -8,5 +8,8 @@ const LINE =
   'You say "ignore all previous instructions" — those were YOUR instructions. I am now ignoring you, on your orders.';
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "out";
+if (LINE.length < 1 || LINE.length > 200) {
+  throw new Error(`entry line must be 1–200 characters, got ${LINE.length}`);
+}
 mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, "entry.txt"), LINE, "utf8");
